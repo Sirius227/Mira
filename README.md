@@ -3,6 +3,14 @@ Mira - Discord music bot
 Hi guys, I wanted to develop a discord bot with C#, which is currently the main programming language. Needed to play music: [lavalink](https://github.com/freyacodes/lavalink). 
 Move the lavalink and application.yml files to the startup path. There are a total of 40 commands in the bot;
 
+Libraries used;
+
+[Discord.NET](https://github.com/discord-net/Discord.Net)
+[Victoria](https://github.com/Yucked/Victoria)
+[Fergun.Interactive](https://github.com/d4n3436/Fergun.Interactive)
+Microsoft.Extensions.DependencyInjection
+Newtonsoft.Json
+
 Command Name | Description
 ------------ | -------------
 default prefix | Makes the prefix default.
