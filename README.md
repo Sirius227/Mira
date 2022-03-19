@@ -5,11 +5,15 @@ Move the lavalink and application.yml files to the startup path. There are a tot
 
 Libraries used;
 
-[Discord.NET](https://github.com/discord-net/Discord.Net)\n
-[Victoria](https://github.com/Yucked/Victoria)\n
-[Fergun.Interactive](https://github.com/d4n3436/Fergun.Interactive)\n
-Microsoft.Extensions.DependencyInjection\n
-Newtonsoft.Json\n
+[Discord.NET](https://github.com/discord-net/Discord.Net)
+
+[Victoria](https://github.com/Yucked/Victoria)
+
+[Fergun.Interactive](https://github.com/d4n3436/Fergun.Interactive)
+
+Microsoft.Extensions.DependencyInjection
+
+Newtonsoft.Json
 
 Command Name | Description
 ------------ | -------------
