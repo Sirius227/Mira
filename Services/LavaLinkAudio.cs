@@ -49,7 +49,6 @@ namespace Mira.Services
         private async Task<SearchResponse> SearchQueryFromYoutube(string query)
             => Uri.IsWellFormedUriString(query, UriKind.Absolute) ? await _lavaNode.SearchAsync(SearchType.Direct, query) : await _lavaNode.SearchAsync(SearchType.YouTube, query);
 
-        bool play = false, pause = false;
         IRole? djrole;
         public async Task<Embed> JoinAsync(IGuild guild, IVoiceState voiceState, ITextChannel textChannel)
         {
@@ -73,50 +72,7 @@ namespace Mira.Services
 
                 if (voiceState.VoiceChannel == player.VoiceChannel || ((voiceState.VoiceChannel != player.VoiceChannel) && (users == 0)) || player.Track is null)
                 {
-                    if (player.Track != null)
-                    {
-                        var track = player.Track;
-                        var position = player.Track.Position;
-                        var queue = player.Queue;
-
-                        play = player.PlayerState == PlayerState.Playing;
-                        pause = player.PlayerState == PlayerState.Paused;
-
-                        await player.StopAsync();
-                        player.Queue.Clear();
-
-                        await _lavaNode.LeaveAsync(voiceState.VoiceChannel);
-                        await _lavaNode.JoinAsync(voiceState.VoiceChannel, textChannel);
-
-                        var _player = _lavaNode.GetPlayer(guild);
-
-                        if (pause)
-                        {
-                            await _player.PlayAsync(track);
-                            await _player.SeekAsync(position);
-                            await _player.PauseAsync();
-
-                            foreach (var item in queue)
-                            {
-                                _player.Queue.Enqueue(item);
-                            }
-                        }
-                        else if (play)
-                        {
-                            await _player.PlayAsync(track);
-                            await _player.SeekAsync(position);
-
-                            foreach (var item in queue)
-                            {
-                                _player.Queue.Enqueue(item);
-                            }
-                        }
-                        return await EmbedHandler.CreateBasicEmbed("Join", $"I joined to the channel \"{voiceState.VoiceChannel.Name}\" ");
-                    }
-
-
-                    await _lavaNode.LeaveAsync(voiceState.VoiceChannel);
-                    await _lavaNode.JoinAsync(voiceState.VoiceChannel, textChannel);
+                    await _lavaNode.MoveChannelAsync(voiceState.VoiceChannel);
 
                     return await EmbedHandler.CreateBasicEmbed("Join", $"I joined to the channel \"{voiceState.VoiceChannel.Name}\" ");
                 }
