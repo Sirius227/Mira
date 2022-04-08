@@ -43,7 +43,6 @@ namespace Mira.Handlers
         private static BotConfig GenerateNewConfig() => new()
         {
             DiscordToken = "",
-            GeniusToken = "",
             WebhookId = 0,
             WebhookToken = "",
             GameStatus = "",
